@@ -1,0 +1,40 @@
+# lastfm-heatmap
+
+#### Generate png, pdf, ps, eps and svg heatmaps of listening activity using personalised data from last.fm
+
+## Requirements
+
+The PHP downloader is standalone, reliant only upon PHP CLI. It has been tested on PHP 5.3.10 on Mac OS X 10.7.4
+The Python script uses the `numpy` and `matplotlib` modules to generate and plot the heatmaps, so these must be installed by your preferred method.
+
+## Usage
+
+Open lastfmdownloader.php in a text editor and insert your last.fm username, API key and secret into the appripriate variables.
+Open a terminal in the scripts' directory and run using `./lastfmdownloader.php`.
+Once the data is downloaded, this PHP script will in turn call the python script to generate the heatmaps automatically, but this can be done manually after the fact (after chaning the python script to produce different output, for example), using `./heatmap.py username` where 'username' is the username you would like placed in the title of the heatmap.
+
+The final few lines of heatmap.py control the output format, and are easily modified to change the background colour, output size, dpi and format. Examples shown commented out below. Output format is dependent upon the file extension which can be one of png, pdf, ps, eps and svg.
+```python
+# Save the file out to disk
+fig.set_size_inches(30,years*6.5+6) # Expands height to fit appropriate number of years of data
+plt.savefig('heatmap.png', facecolor='0.15', edgecolor='none')
+# plt.savefig('heatmap.png', facecolor='#4a525a', edgecolor='none') # Blue-grey background
+# plt.savefig('heatmap.png', facecolor='0.15', edgecolor='none', dpi=300) # Hi-DPI output
+# plt.savefig('heatmap.pdf', facecolor='0.15', edgecolor='none') # PDF Output
+```
+
+## Example
+
+An example of the output is available at [http://therichardadams.com/lastfm-heatmap/example.png](http://therichardadams.com/lastfm-heatmap/example.png)
+
+## Contact
+
+Richard Adams
+
+- http://github.com/therichardadams
+- http://twitter.com/richardadams
+- richard@therichardadams.com
+
+## License
+
+lastfm-heatmap is available under the MIT license. See the LICENSE file for more info.
